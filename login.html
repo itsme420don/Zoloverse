@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In | Zoloverse</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Google Identity Services SDK -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <style>
+      :root {
+        --primary-purple: #7C2CFF;
+        --electric-violet: #8B2FFF;
+        --neon-magenta: #E600FF;
+        --bright-purple: #A020F0;
+        --lavender-accent: #C9B6FF;
+        --soft-lavender: #F7F3FF;
+        --bg-main: #FFFFFF;
+        --bg-secondary: #FCFAFF;
+        --text-primary: #20152F;
+        --secondary-text: #6B6178;
+        --border-color: #E9DDFC;
+        --hover-bg: #F0E7FF;
+
+        --bg: #FFFFFF;
+        --card: #FFFFFF;
+        --text: #20152F;
+        --muted: #6B6178;
+        --accent: #7C2CFF;
+        --accent-dark: #A020F0;
+        --border: #E9DDFC;
+        --danger: #EF4444;
+        --success: #10B981;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+      body {
+        min-height: 100vh;
+        background: radial-gradient(circle at 50% 15%, #F7F3FF 0%, #FFFFFF 65%);
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+      .auth-shell { width: 100%; max-width: 440px; }
+      .brand { text-align: center; margin-bottom: 28px; }
+      .brand .logo-mark {
+        width: 74px; height: 74px; border-radius: 18px; margin: 0 auto 14px;
+        background: linear-gradient(135deg, var(--primary-purple), var(--neon-magenta));
+        display: flex; align-items: center; justify-content: center;
+        color: #fff; font-size: 1.9rem; box-shadow: 0 10px 28px rgba(124, 44, 255, 0.28);
+      }
+      .brand h1 { font-size: 1.75rem; color: var(--accent); margin-bottom: 6px; letter-spacing: 0.5px; font-weight: 800; }
+      .brand p { color: var(--muted); font-size: 0.95rem; }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 34px;
+        box-shadow: 0 12px 40px rgba(124, 44, 255, 0.08);
+      }
+      .card h2 { font-size: 1.35rem; margin-bottom: 6px; color: var(--text); font-weight: 800; }
+      .card .subtitle { color: var(--muted); font-size: 0.9rem; margin-bottom: 24px; }
+      .form-group { margin-bottom: 18px; }
+      .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+      .input-wrap { position: relative; }
+      .form-control {
+        width: 100%;
+        padding: 13px 16px;
+        border: 1.5px solid var(--border);
+        border-radius: 8px;
+        font-size: 0.95rem;
+        outline: none;
+        transition: 0.2s;
+        background: #FFFFFF;
+        color: var(--text);
+      }
+      .form-control:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(124, 44, 255, 0.15);
+        background: #FFFFFF;
+      }
+      .pw-toggle {
+        position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+        background: none; border: none; color: var(--muted); cursor: pointer; font-size: 1rem;
+        padding: 4px;
+      }
+      .pw-toggle:hover { color: var(--accent); }
+      .form-control.is-pw { padding-right: 44px; }
+      .row-between { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+      .row-between label { margin-bottom: 0; }
+      .link-btn { background: none; border: none; color: var(--accent); font-weight: 600; font-size: 0.85rem; cursor: pointer; }
+      .link-btn:hover { text-decoration: underline; color: var(--accent-dark); }
+      .btn-primary {
+        width: 100%;
+        padding: 14px;
+        border: none;
+        border-radius: 8px;
+        background: linear-gradient(135deg, var(--primary-purple), var(--bright-purple));
+        color: #fff;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: 0.2s;
+        margin-top: 8px;
+        letter-spacing: 0.3px;
+        box-shadow: 0 4px 14px rgba(124, 44, 255, 0.25);
+      }
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #6A1FE6, #8F15DA);
+        transform: translateY(-1px);
+        box-shadow: 0 8px 24px rgba(124, 44, 255, 0.35);
+      }
+      .btn-primary:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+      .msg {
+        background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.25); color: #DC2626;
+        padding: 12px 14px; border-radius: 8px; font-size: 0.88rem;
+        margin-bottom: 16px; display: none; font-weight: 500;
+      }
+      .msg.info { background: rgba(124, 44, 255, 0.1); border-color: rgba(124, 44, 255, 0.25); color: var(--primary-purple); }
+      .msg.success { background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.25); color: #059669; }
+      .footer-links { text-align: center; margin-top: 22px; font-size: 0.9rem; color: var(--muted); }
+      .footer-links a { color: var(--accent); font-weight: 600; text-decoration: none; }
+      .footer-links a:hover { text-decoration: underline; color: var(--accent-dark); }
+      .back-home {
+        display: inline-flex; align-items: center; gap: 6px;
+        color: var(--muted); text-decoration: none; font-size: 0.88rem; margin-bottom: 20px; font-weight: 600;
+      }
+      .back-home:hover { color: var(--accent); }
+      .reset-note p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px; }
+      .reset-link-box {
+        background: var(--soft-lavender); border: 1px solid var(--border); border-radius: 8px;
+        padding: 12px 14px; font-size: 0.82rem; word-break: break-all; color: var(--accent-dark);
+        margin-bottom: 16px; display: none;
+      }
+      .strength-bar { height: 4px; border-radius: 4px; background: rgba(124, 44, 255, 0.15); margin-top: 8px; overflow: hidden; }
+      .strength-bar span { display: block; height: 100%; width: 0; border-radius: 4px; transition: width 0.3s ease, background 0.3s ease; }
+    </style>
+  </head>
+  <body>
+    <div class="auth-shell">
+      <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Zoloverse</a>
+      <div class="brand">
+        <div class="logo-mark"><i class="fas fa-laptop-code"></i></div>
+        <h1>Zoloverse</h1>
+        <p>IT Services, Development Courses &amp; Projects</p>
+      </div>
+
+      <!-- SIGN IN VIEW -->
+      <div class="card" id="viewSignIn">
+        <h2>Welcome back</h2>
+        <p class="subtitle">Sign in to access your dashboard and manage the platform.</p>
+        <div id="errorMessage" class="msg"></div>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="email">Username or Email</label>
+            <input type="text" id="email" class="form-control" placeholder="Enter username or email" required autocomplete="username" />
+          </div>
+          <div class="form-group">
+            <div class="row-between">
+              <label for="password">Password</label>
+              <button type="button" class="link-btn" id="goForgotBtn">Forgot password?</button>
+            </div>
+            <div class="input-wrap">
+              <input type="password" id="password" class="form-control is-pw" placeholder="Enter your password" required autocomplete="current-password" />
+              <button type="button" class="pw-toggle" id="pwToggle" aria-label="Show password"><i class="fas fa-eye"></i></button>
+            </div>
+          </div>
+          <button type="submit" class="btn-primary" id="submitBtn">Sign In</button>
+        </form>
+
+        <div id="googleSetupWarning" style="background:#fff9e6; border:1px solid #ffe8a1; color:#856404; padding:12px; border-radius:8px; font-size:0.82rem; margin-top:20px; line-height:1.4; display:none;">
+          <i class="fas fa-exclamation-triangle" style="margin-right:6px;"></i><strong>Developer Info:</strong> Google Sign-In is ready to use, but you need to paste your Client ID into <code>config.php</code> to activate the button.
+        </div>
+
+        <div id="googleSection" style="display: none;">
+          <div style="margin: 22px 0 18px 0; text-align: center; position: relative;">
+            <hr style="border: 0; border-top: 1px solid var(--border);">
+            <span style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--card); padding: 0 10px; color: var(--muted); font-size: 0.85rem; font-weight: 500;">or</span>
+          </div>
+          <div id="googleBtn" style="width: 100%; display: flex; justify-content: center;"></div>
+        </div>
+
+        <div class="footer-links" id="signupFooter">
+          Need custom software engineering? <a href="register.html">Place a service order</a>
+        </div>
+      </div>
+
+      <!-- FORGOT PASSWORD VIEW -->
+      <div class="card" id="viewForgot" style="display:none;">
+        <h2>Reset your password</h2>
+        <p class="subtitle">Enter your account email and we will generate a reset link for you.</p>
+        <div id="forgotMessage" class="msg"></div>
+        <div class="reset-link" id="resetLinkBox"></div>
+        <form id="forgotForm">
+          <div class="form-group">
+            <label for="forgotEmail">Email address</label>
+            <input type="email" id="forgotEmail" class="form-control" placeholder="you@example.com" required autocomplete="email" />
+          </div>
+          <button type="submit" class="btn-primary" id="forgotBtn">Send Reset Link</button>
+        </form>
+        <div class="footer-links">
+          Remembered it? <button type="button" class="link-btn" style="font-size:0.9rem" onclick="switchView('signin')">Back to sign in</button>
+        </div>
+      </div>
+
+      <!-- RESET PASSWORD VIEW -->
+      <div class="card" id="viewReset" style="display:none;">
+        <h2>Create a new password</h2>
+        <p class="subtitle">Your reset link is valid for 1 hour.</p>
+        <div id="resetMessage" class="msg"></div>
+        <form id="resetForm">
+          <div class="form-group">
+            <label for="resetPassword">New password</label>
+            <div class="input-wrap">
+              <input type="password" id="resetPassword" class="form-control is-pw" placeholder="At least 6 characters" required minlength="6" autocomplete="new-password" />
+              <button type="button" class="pw-toggle" data-target="resetPassword"><i class="fas fa-eye"></i></button>
+            </div>
+            <div class="strength-bar"><span id="resetStrength"></span></div>
+          </div>
+          <div class="form-group">
+            <label for="resetConfirm">Confirm new password</label>
+            <div class="input-wrap">
+              <input type="password" id="resetConfirm" class="form-control is-pw" placeholder="Re-enter new password" required minlength="6" autocomplete="new-password" />
+              <button type="button" class="pw-toggle" data-target="resetConfirm"><i class="fas fa-eye"></i></button>
+            </div>
+          </div>
+          <button type="submit" class="btn-primary" id="resetBtn">Update Password</button>
+        </form>
+        <div class="footer-links">
+          Back to <button type="button" class="link-btn" style="font-size:0.9rem" onclick="switchView('signin')">sign in</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const redirect = params.get("redirect") || "index.html";
+      const resetToken = params.get("reset") || "";
+
+      const views = { signin: "viewSignIn", forgot: "viewForgot", reset: "viewReset" };
+
+      function switchView(name) {
+        document.querySelectorAll(".card").forEach(c => c.style.display = "none");
+        document.getElementById(views[name]).style.display = "block";
+        if (name === "signin" && resetToken) {
+          const url = new URL(window.location.href);
+          url.searchParams.delete("reset"); // drop the spent token, keep ?redirect
+          window.history.replaceState({}, "", url);
+        }
+      }
+
+      function showMsg(el, text, type) {
+        el.className = "msg" + (type ? " " + type : "");
+        el.textContent = text;
+        el.style.display = "block";
+      }
+
+      function hideMsg(el) {
+        el.style.display = "none";
+      }
+
+      /* ------- Show / hide password toggles ------- */
+      function bindToggle(btn, inputId) {
+        btn.addEventListener("click", () => {
+          const input = document.getElementById(inputId);
+          const open = input.type === "password";
+          input.type = open ? "text" : "password";
+          btn.innerHTML = open ? '<i class="fas fa-eye-slash"></i>' : '<i class="fas fa-eye"></i>';
+        });
+      }
+      bindToggle(document.getElementById("pwToggle"), "password");
+      document.querySelectorAll(".pw-toggle[data-target]").forEach(btn => bindToggle(btn, btn.dataset.target));
+
+      function updateStrength(input, bar) {
+        const v = input.value;
+        let score = 0;
+        if (v.length >= 6) score++;
+        if (v.length >= 10) score++;
+        if (/[A-Z]/.test(v) && /[a-z]/.test(v)) score++;
+        if (/\d/.test(v)) score++;
+        if (/[^A-Za-z0-9]/.test(v)) score++;
+        const pct = Math.min(100, score * 20);
+        const colors = ["#ff595e", "#ff595e", "#ffb703", "#06d6a0", "#06d6a0", "#06d6a0"];
+        bar.style.width = pct + "%";
+        bar.style.background = colors[score];
+        return score;
+      }
+      document.getElementById("resetPassword").addEventListener("input", function () {
+        updateStrength(this, document.getElementById("resetStrength"));
+      });
+
+      /* ---------------- Google Sign-In ---------------- */
+      async function initGoogleSignIn() {
+        try {
+          const res = await fetch("auth.php?action=config");
+          const config = await res.json();
+          const googleClientId = config.google_client_id;
+
+          if (!googleClientId || googleClientId.includes("YOUR_GOOGLE_CLIENT_ID")) {
+            document.getElementById("googleSetupWarning").style.display = "block";
+            return;
+          }
+
+          document.getElementById("googleSection").style.display = "block";
+
+          const setupGoogle = () => {
+            google.accounts.id.initialize({ client_id: googleClientId, callback: handleGoogleSignInResponse });
+            google.accounts.id.renderButton(
+              document.getElementById("googleBtn"),
+              { theme: "outline", size: "large", text: "signin_with", width: 368, shape: "rectangular" }
+            );
+            google.accounts.id.prompt();
+          };
+
+          if (typeof google !== "undefined") setupGoogle();
+          else {
+            const checkInterval = setInterval(() => {
+              if (typeof google !== "undefined") { clearInterval(checkInterval); setupGoogle(); }
+            }, 100);
+          }
+        } catch (e) {
+          console.error("Failed to load Google configuration:", e);
+        }
+      }
+
+      async function handleGoogleSignInResponse(response) {
+        const errorDiv = document.getElementById("errorMessage");
+        hideMsg(errorDiv);
+        try {
+          const res = await fetch("auth.php?action=google_login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ credential: response.credential })
+          });
+          const data = await res.json();
+          if (data.success) {
+            localStorage.setItem("zoloverse_token", data.token);
+            localStorage.setItem("zoloverse_user", JSON.stringify(data.user));
+            window.location.href = data.user.role === "admin" ? "admin.html" : (redirect === "admin.html" ? "index.html" : redirect);
+          } else {
+            showMsg(errorDiv, data.message || "Google Authentication failed.");
+          }
+        } catch (err) {
+          showMsg(errorDiv, "Unable to connect to login server.");
+        }
+      }
+
+      /* ------- Sign-in submit ------- */
+      document.getElementById("loginForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById("submitBtn");
+        const errorDiv = document.getElementById("errorMessage");
+        hideMsg(errorDiv);
+        btn.disabled = true;
+        const original = btn.textContent;
+        btn.textContent = "Signing in...";
+
+        try {
+          const res = await fetch("auth.php?action=login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: document.getElementById("email").value.trim(),
+              password: document.getElementById("password").value
+            })
+          });
+          const data = await res.json();
+
+          if (data.success) {
+            localStorage.setItem("zoloverse_token", data.token);
+            localStorage.setItem("zoloverse_user", JSON.stringify(data.user));
+            window.location.href = data.user.role === "admin" ? "admin.html" : (redirect === "admin.html" ? "index.html" : redirect);
+          } else {
+            showMsg(errorDiv, data.message || "Invalid email or password.");
+          }
+        } catch (err) {
+          showMsg(errorDiv, "Unable to connect. Please check your server is running.");
+        } finally {
+          btn.disabled = false;
+          btn.textContent = original;
+        }
+      });
+
+      /* -------------- Forgot password submit -------------- */
+      document.getElementById("forgotForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById("forgotBtn");
+        const msgDiv = document.getElementById("forgotMessage");
+        const linkBox = document.getElementById("resetLinkBox");
+        hideMsg(msgDiv);
+        linkBox.style.display = "none";
+        btn.disabled = true;
+        btn.textContent = "Sending...";
+
+        try {
+          const res = await fetch("auth.php?action=forgot_password", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: document.getElementById("forgotEmail").value.trim() })
+          });
+          const data = await res.json();
+
+          if (data.success) {
+            showMsg(msgDiv, data.message, "success");
+            if (data.reset_link) {
+              linkBox.textContent = "Reset link: " + data.reset_link;
+              linkBox.style.display = "block";
+            }
+          } else {
+            showMsg(msgDiv, data.message || "Could not send reset link.");
+          }
+        } catch (err) {
+          showMsg(msgDiv, "Unable to connect. Please try again.");
+        } finally {
+          btn.disabled = false;
+          btn.textContent = "Send Reset Link";
+        }
+      });
+
+      /* ---------------- Reset password submit ---------------- */
+      document.getElementById("resetForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById("resetBtn");
+        const msgDiv = document.getElementById("resetMessage");
+        const pw = document.getElementById("resetPassword").value;
+        const conf = document.getElementById("resetConfirm").value;
+
+        hideMsg(msgDiv);
+        if (pw !== conf) { showMsg(msgDiv, "Passwords do not match."); return; }
+
+        btn.disabled = true;
+        btn.textContent = "Updating...";
+
+        try {
+          const res = await fetch("auth.php?action=reset_password", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ token: resetToken, password: pw })
+          });
+          const data = await res.json();
+
+          if (data.success) {
+            showMsg(msgDiv, data.message + " Redirecting to sign in...", "success");
+            setTimeout(() => { window.location.href = "login.html"; }, 1600);
+          } else {
+            showMsg(msgDiv, data.message || "Could not reset password.");
+          }
+        } catch (err) {
+          showMsg(msgDiv, "Unable to connect. Please try again.");
+        } finally {
+          btn.disabled = false;
+          btn.textContent = "Update Password";
+        }
+      });
+
+      document.getElementById("goForgotBtn").addEventListener("click", () => switchView("forgot"));
+
+      /* ---------------- Route to the correct view ---------------- */
+      if (resetToken) {
+        switchView("reset");
+      } else {
+        switchView("signin");
+      }
+
+      initGoogleSignIn();
+    </script>
+  </body>
+</html>

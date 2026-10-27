@@ -1,0 +1,41 @@
+# Render Blueprint (infrastructure as code) for Zoloverse
+# In the dashboard: New -> Blueprint -> connect this repo. It provisions the
+# free Postgres database and the Docker web service, wiring all env vars.
+
+databases:
+  - name: zoloverse-db
+    plan: free
+    databaseName: zoloverse
+    postgresMajorVersion: "16"
+
+services:
+  - type: web
+    name: zoloverse
+    runtime: docker
+    repo: https://github.com/madrasboy7-creator/Zoloverse
+    plan: free
+    branch: main
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: DB_DRIVER
+        value: pgsql
+      - key: DB_HOST
+        fromDatabase:
+          name: zoloverse-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: zoloverse-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: zoloverse-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: zoloverse-db
+          property: user
+      - key: DB_PASS
+        fromDatabase:
+          name: zoloverse-db
+          property: password
