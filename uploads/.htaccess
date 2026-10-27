@@ -1,0 +1,13 @@
+# Security: Deny PHP script execution inside uploads directory
+<FilesMatch "(?i)\.(php|phtml|php3|php4|php5|php7|php8|phar|inc)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Only serve image and media MIME types
+<FilesMatch "(?i)\.(jpe?g|png|gif|webp|svg|ico|pdf)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+Options -Indexes -ExecCGI

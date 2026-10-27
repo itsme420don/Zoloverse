@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>Zoloverse | Elite IT Engineering &amp; Software Solutions</title>
+    <meta name="description" content="Bespoke full-stack IT development, custom cloud architecture, and high-impact digital products for visionary teams." />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css?v=zoloverse_v3" />
+    <script>
+      (function() {
+        try {
+          if (sessionStorage.getItem('zoloverse_session_intro_completed')) {
+            document.documentElement.classList.add('intro-done');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- Initial Loading Screen Curtain -->
+    <div class="loading-screen" id="loadingScreen">
+      <div class="loading-brand">
+        <img src="Logo.jpeg" alt="Zoloverse" class="brand-logo-img" style="height: 52px; width: auto;" />
+        <span class="brand-text-name">Zoloverse</span>
+      </div>
+      <div class="loading-tagline">Crafting Digital Excellence &amp; Software Architecture</div>
+    </div>
+
+    <!-- Master Header / Navbar -->
+    <header class="navbar">
+      <div class="nav-container">
+        <a class="brand" href="index.html">
+          <img src="Logo.jpeg" alt="Zoloverse Logo" class="brand-logo-img" />
+          <div class="brand-fallback-icon" style="display:none;"><i class="fas fa-laptop-code"></i></div>
+          <span class="brand-title"><span class="brand-text-name">Zolo</span><span>verse</span></span>
+        </a>
+
+        <!-- Multipage Navigation Links -->
+        <nav>
+          <ul class="nav-links" id="navLinks">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="projects.html">Projects Showcase</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="register.html">Order Service</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-actions">
+          <a href="register.html" class="btn btn-primary btn-sm magnetic"><i class="fas fa-paper-plane"></i> Place Order</a>
+          <a href="admin.html" class="btn btn-secondary btn-sm" title="Admin Panel"><i class="fas fa-shield-alt"></i></a>
+          <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Toggle Navigation"><i class="fas fa-bars"></i></button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- =========================================================
+           1. HERO SECTION (With Orchestrated Entrance & Split Mask)
+           ========================================================= -->
+      <section class="page-hero hero-section">
+        <div class="container">
+          <div class="hero-split-grid">
+            <div class="hero-content">
+              <span class="section-badge hero-category-label"><i class="fas fa-sparkles"></i> High-Performance Digital Studio</span>
+              
+              <h1 class="hero-heading">
+                <span class="line-wrap"><span class="line-inner">Architecting Software.</span></span>
+                <span class="line-wrap"><span class="line-inner">Mentoring Builders.</span></span>
+                <span class="line-wrap"><span class="line-inner" style="background: linear-gradient(135deg, var(--primary-purple), var(--neon-magenta)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Igniting Scalability.</span></span>
+              </h1>
+
+              <p class="section-subtitle hero-subtext" style="margin-bottom: 30px;">
+                Zoloverse merges enterprise full-stack development with hands-on software craftsmanship education. We engineer mission-critical systems and train developers to lead in the digital era.
+              </p>
+
+              <div class="hero-actions" style="display: flex; gap: 16px; flex-wrap: wrap;">
+                <a href="services.html" class="btn btn-primary magnetic"><i class="fas fa-layer-group"></i> Explore IT Offerings</a>
+                <a href="projects.html" class="btn btn-outline magnetic"><i class="fas fa-desktop"></i> View Projects Showcase</a>
+              </div>
+            </div>
+
+            <div class="hero-visual">
+              <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80" alt="Zoloverse Engineering Studio" id="heroVisualImg" />
+              <div class="floating-card">
+                <i class="fas fa-award"></i>
+                <div>
+                  <h4 style="color: var(--text-main); font-size: 0.95rem; margin-bottom: 2px;">99.8% Reliability</h4>
+                  <p style="color: var(--text-muted); font-size: 0.8rem; margin: 0;">Enterprise Architecture Standards</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           2. WHO WE ARE SECTION (GSAP ScrollTrigger Animation)
+           ========================================================= -->
+      <section class="section-padding who-we-are" style="background: var(--canvas-neutral); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+        <div class="container">
+          <div class="hero-split-grid" style="align-items: center;">
+            <div>
+              <span class="wwa-number" style="display: block; font-size: 5rem; font-weight: 900; color: var(--lavender-accent); line-height: 1;">01</span>
+              <span class="section-badge" style="margin-top: 10px;">Who We Are</span>
+              <h2 class="section-title" style="margin-top: 10px;">A Collective of Engineers, Mentors &amp; Digital Craftsmen</h2>
+            </div>
+            <div class="wwa-content" style="display: flex; flex-direction: column; gap: 18px;">
+              <p style="color: var(--text-main); font-size: 1.15rem; font-weight: 600; line-height: 1.8;" id="homeAboutIntroText">
+                Zoloverse stands at the intersection of modern technology services and practical technology education. We reject template factories and shallow coding bootcamps in favor of deep software fundamentals, clean code, and resilient architectures.
+              </p>
+              <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.8;">
+                From high-concurrency microservices and database clustering to responsive design systems in React and TypeScript, our solutions power businesses while our academy produces skilled developers ready for immediate production deployment.
+              </p>
+              <div style="margin-top: 10px;">
+                <a href="about.html" class="btn btn-secondary magnetic">Read Our Full Story <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           3. WHAT DRIVES US (Curtain Hover Micro-Interactions)
+           ========================================================= -->
+      <section class="section-padding what-drives-us-section">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-badge">Core Disciplines</span>
+            <h2 class="section-title">What Drives Our Work</h2>
+            <p class="section-subtitle">Our engineering principles are embedded into every line of code we write and every curriculum module we deliver.</p>
+          </div>
+
+          <div class="what-drives-us">
+            <div class="drive-item">
+              <div class="drive-number">01</div>
+              <div class="drive-content">
+                <h3 class="drive-title">Clean Relational &amp; API Architecture</h3>
+                <p class="drive-desc">Designing robust schemas, ACID-compliant database transactions, and secure RESTful APIs that scale effortlessly without technical debt.</p>
+              </div>
+            </div>
+
+            <div class="drive-item">
+              <div class="drive-number">02</div>
+              <div class="drive-content">
+                <h3 class="drive-title">Human-Centered Design Systems</h3>
+                <p class="drive-desc">Creating intuitive, accessible, and responsive user interfaces that deliver delightful digital experiences on mobile, tablet, and desktop.</p>
+              </div>
+            </div>
+
+            <div class="drive-item">
+              <div class="drive-number">03</div>
+              <div class="drive-content">
+                <h3 class="drive-title">Production-Grade Apprenticeship</h3>
+                <p class="drive-desc">Training developers through actual sprint cycles, GitHub workflows, pull request code reviews, and live production deployments.</p>
+              </div>
+            </div>
+
+            <div class="drive-item">
+              <div class="drive-number">04</div>
+              <div class="drive-content">
+                <h3 class="drive-title">Absolute Transparency &amp; Integrity</h3>
+                <p class="drive-desc">Clear communication, reliable project milestones, zero vendor lock-in, and full intellectual property ownership for every client.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           4. FEATURED IT SERVICES & COURSES (Preview)
+           ========================================================= -->
+      <section class="section-padding" style="background: var(--canvas-neutral); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+        <div class="container">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; flex-wrap: wrap; gap: 20px;">
+            <div class="section-header" style="margin-bottom: 0;">
+              <span class="section-badge">Featured Capabilities</span>
+              <h2 class="section-title">Professional IT Services</h2>
+              <p class="section-subtitle">Custom software engineering solutions built for stability, security, and velocity.</p>
+            </div>
+            <a href="services.html" class="btn btn-secondary magnetic">View All Services <i class="fas fa-arrow-right"></i></a>
+          </div>
+
+          <div class="cards-grid-3" id="homeFeaturedServicesContainer">
+            <div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px;">Loading featured services...</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           5. HORIZONTAL PINNED SCROLL ENGINE
+           ========================================================= -->
+      <section class="global-mindset">
+        <div class="horizontal-scroll-container">
+          <div class="hs-panel">
+            <span class="section-badge">Global Perspective</span>
+            <h2 class="hs-title">Worldwide Engineering</h2>
+            <p class="hs-desc">Collaborating with modern enterprises, innovative founders, and forward-looking teams across continents with asynchronous agility.</p>
+          </div>
+
+          <div class="hs-panel">
+            <span class="section-badge">Modern Stack</span>
+            <h2 class="hs-title">Zero Bloat Code</h2>
+            <p class="hs-desc">Pure semantic HTML5, modern vanilla CSS tokens, TypeScript, React 19, PHP PDO, and PostgreSQL. Fast, lean, and easily maintainable.</p>
+          </div>
+
+          <div class="hs-panel">
+            <span class="section-badge">Craftsmanship</span>
+            <h2 class="hs-title">Zero Compromise</h2>
+            <p class="hs-desc">Every database query is indexed, every UI interaction animated with physics-based easing, and every student given 1-on-1 code reviews.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           6. FEATURED PROJECTS SHOWCASE (Preview)
+           ========================================================= -->
+      <section class="section-padding">
+        <div class="container">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; flex-wrap: wrap; gap: 20px;">
+            <div class="section-header" style="margin-bottom: 0;">
+              <span class="section-badge">Client &amp; Academy Work</span>
+              <h2 class="section-title">Projects Showcase</h2>
+              <p class="section-subtitle">Explore deployed applications with real-world architectures, responsive UI, and live demonstrators.</p>
+            </div>
+            <a href="projects.html" class="btn btn-secondary magnetic">View Full Projects Showcase <i class="fas fa-arrow-right"></i></a>
+          </div>
+
+          <div class="cards-grid-3" id="homeFeaturedProjectsContainer">
+            <div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px;">Loading projects showcase...</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           7. CONTINUOUS MARQUEE INFINITE SCROLL
+           ========================================================= -->
+      <div class="marquee-wrapper">
+        <div class="marquee-content">
+          <div class="marquee-item"><i class="fas fa-code-branch"></i> Full-Stack Engineering</div>
+          <div class="marquee-item"><i class="fas fa-layer-group"></i> React 19 &amp; TypeScript</div>
+          <div class="marquee-item"><i class="fas fa-database"></i> PostgreSQL &amp; MariaDB</div>
+          <div class="marquee-item"><i class="fas fa-server"></i> Modern PHP 8.x Architecture</div>
+          <div class="marquee-item"><i class="fas fa-shield-alt"></i> JWT Security &amp; RBAC</div>
+          <div class="marquee-item"><i class="fas fa-palette"></i> Figma UI/UX Design Systems</div>
+          <div class="marquee-item"><i class="fas fa-cloud"></i> Docker &amp; Cloud Deployment</div>
+          <!-- Repeated for seamless loop -->
+          <div class="marquee-item"><i class="fas fa-code-branch"></i> Full-Stack Engineering</div>
+          <div class="marquee-item"><i class="fas fa-layer-group"></i> React 19 &amp; TypeScript</div>
+          <div class="marquee-item"><i class="fas fa-database"></i> PostgreSQL &amp; MariaDB</div>
+          <div class="marquee-item"><i class="fas fa-server"></i> Modern PHP 8.x Architecture</div>
+          <div class="marquee-item"><i class="fas fa-shield-alt"></i> JWT Security &amp; RBAC</div>
+          <div class="marquee-item"><i class="fas fa-palette"></i> Figma UI/UX Design Systems</div>
+          <div class="marquee-item"><i class="fas fa-cloud"></i> Docker &amp; Cloud Deployment</div>
+        </div>
+      </div>
+
+      <!-- =========================================================
+           8. OUR IMPACT & STATISTICS
+           ========================================================= -->
+      <section class="section-padding our-impact">
+        <div class="container">
+          <div class="section-header text-center">
+            <span class="section-badge">Measured Results</span>
+            <h2 class="section-title">Our Impact in Numbers</h2>
+            <p class="section-subtitle">Real metrics reflecting client software deployments and student engineering careers.</p>
+          </div>
+
+          <div class="cards-grid-3">
+            <div class="stat-card stat-item">
+              <div class="stat-number">40+</div>
+              <div class="stat-label">Production Software Deployments</div>
+              <p style="color: var(--text-dim); font-size: 0.88rem; margin-top: 8px;">Delivered on-time across web, cloud, and mobile architectures.</p>
+            </div>
+
+            <div class="stat-card stat-item">
+              <div class="stat-number">350+</div>
+              <div class="stat-label">Developers Mentored &amp; Certified</div>
+              <p style="color: var(--text-dim); font-size: 0.88rem; margin-top: 8px;">Trained in industry-standard software patterns and tools.</p>
+            </div>
+
+            <div class="stat-card stat-item">
+              <div class="stat-number">99.8%</div>
+              <div class="stat-label">Application Service Uptime</div>
+              <p style="color: var(--text-dim); font-size: 0.88rem; margin-top: 8px;">Battle-tested failover, monitoring, and automated backups.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           9. CALL TO ACTION BANNER
+           ========================================================= -->
+      <section class="section-padding" style="background: linear-gradient(135deg, var(--primary-red-tint) 0%, #FFFFFF 100%); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+        <div class="container" style="text-align: center; max-width: 800px;">
+          <span class="section-badge">Get In Touch</span>
+          <h2 class="section-title">Ready to Elevate Your Digital Architecture?</h2>
+          <p class="section-subtitle" style="margin-bottom: 30px;">
+            Whether you need a dedicated development team for an enterprise application or want custom cloud architecture, our engineers are ready to build your solution.
+          </p>
+          <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+            <a href="register.html" class="btn btn-primary magnetic"><i class="fas fa-paper-plane"></i> Place Order Request</a>
+            <a href="contact.html" class="btn btn-gold magnetic"><i class="fas fa-envelope"></i> Send Us an Enquiry</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Master Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <a class="brand" href="index.html" style="margin-bottom: 16px;">
+              <img src="Logo.jpeg" alt="Zoloverse Logo" class="brand-logo-img" />
+              <div class="brand-fallback-icon" style="display:none;"><i class="fas fa-laptop-code"></i></div>
+              <span class="brand-title"><span class="brand-text-name">Zolo</span><span>verse</span></span>
+            </a>
+            <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.7; margin-top: 14px;">
+              Premier IT software development studio dedicated to craftsmanship, scalable engineering, and high-impact digital solutions.
+            </p>
+          </div>
+
+          <div class="footer-col footer-nav">
+            <h4>Navigation</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="projects.html">Projects Showcase</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+              <li><a href="register.html">Order Service</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col footer-nav">
+            <h4>Offerings</h4>
+            <ul>
+              <li><a href="services.html">Full-Stack Web Development</a></li>
+              <li><a href="services.html">UI/UX Interface Design</a></li>
+              <li><a href="services.html">API &amp; Cloud Database</a></li>
+              <li><a href="services.html">Mobile Solutions</a></li>
+              <li><a href="services.html">Backend Architecture</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Contact Details</h4>
+            <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 10px;">
+              <i class="fas fa-map-marker-alt" style="color: var(--accent-gold); margin-right: 8px;"></i> <span class="brand-contact-location">Chennai, Tamil Nadu, India</span>
+            </p>
+            <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 10px;">
+              <i class="fas fa-envelope" style="color: var(--accent-gold); margin-right: 8px;"></i> <a href="mailto:contact@zoloverse.com" class="brand-contact-email" style="color:inherit; text-decoration:none;">contact@zoloverse.com</a>
+            </p>
+            <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 10px;">
+              <i class="fas fa-phone" style="color: var(--accent-gold); margin-right: 8px;"></i> <a href="tel:+919876543210" class="brand-contact-phone" style="color:inherit; text-decoration:none;">+91 98765 43210</a>
+            </p>
+            <p style="color: var(--text-muted); font-size: 0.92rem;">
+              <i class="fas fa-clock" style="color: var(--accent-gold); margin-right: 8px;"></i> <span class="brand-contact-hours">Mon - Sat: 9:00 AM - 7:00 PM</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div>&copy; 2026 <span class="brand-text-name">Zoloverse</span>. All rights reserved. Professional IT Services &amp; Digital Solutions.</div>
+          <div>Built with Semantic HTML5, CSS Tokens, Modern PHP PDO &amp; GSAP Physics.</div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- GSAP & ScrollTrigger Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js?v=zoloverse_v3"></script>
+    <script>
+      // Load Dynamic Featured Content for Home
+      document.addEventListener('DOMContentLoaded', async () => {
+        try {
+          const [resSvc, resProj] = await Promise.all([
+            fetch('api_services.php'),
+            fetch('api_projects.php')
+          ]);
+          const dataSvc = await resSvc.json();
+          const dataProj = await resProj.json();
+
+          if (dataSvc.success && dataSvc.services) {
+            const list = dataSvc.services.slice(0, 3);
+            const container = document.getElementById('homeFeaturedServicesContainer');
+            if (container) {
+              container.innerHTML = list.map(s => `
+                <div class="service-card">
+                  <div class="card-media">
+                    <span class="card-pill">IT Service</span>
+                    <img src="${escapeHtml(s.image_path || 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80')}" alt="${escapeHtml(s.title)}" />
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-title">${escapeHtml(s.title)}</h3>
+                    <p class="card-desc">${escapeHtml(s.short_description)}</p>
+                    <div class="card-footer">
+                      <a href="services.html" class="btn btn-outline btn-sm">Explore Details <i class="fas fa-chevron-right"></i></a>
+                      <a href="register.html?service=${s.id}" class="btn btn-primary btn-sm">Place Order</a>
+                    </div>
+                  </div>
+                </div>
+              `).join('');
+            }
+          }
+
+          if (dataProj.success && dataProj.projects) {
+            const list = dataProj.projects.slice(0, 3);
+            const container = document.getElementById('homeFeaturedProjectsContainer');
+            if (container) {
+              container.innerHTML = list.map(p => `
+                <div class="project-card">
+                  <div class="card-media">
+                    <span class="card-pill">${escapeHtml(p.category)}</span>
+                    <img src="${escapeHtml(p.main_image || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80')}" alt="${escapeHtml(p.title)}" />
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-title">${escapeHtml(p.title)}</h3>
+                    <p class="card-desc">${escapeHtml(p.description)}</p>
+                    <div class="card-footer">
+                      <a href="projects.html" class="btn btn-outline btn-sm">Architecture View <i class="fas fa-chevron-right"></i></a>
+                      ${p.project_url ? `<a href="${escapeHtml(p.project_url)}" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-sm"><i class="fas fa-external-link-alt"></i> Live Demo</a>` : ''}
+                    </div>
+                  </div>
+                </div>
+              `).join('');
+            }
+          }
+        } catch (e) {
+          console.warn('Failed to load featured content:', e);
+        }
+      });
+
+      function escapeHtml(text) {
+        if (!text) return '';
+        const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+        return text.toString().replace(/[&<>"']/g, m => map[m]);
+      }
+    </script>
+  </body>
+</html>

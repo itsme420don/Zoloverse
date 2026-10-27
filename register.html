@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>Place Service Order Request | Zoloverse</title>
+    <meta name="description" content="Place an order request for Zoloverse professional IT engineering services and custom software solutions." />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css?v=zoloverse_v3" />
+    <script>
+      (function() {
+        try {
+          if (sessionStorage.getItem('zoloverse_session_intro_completed')) {
+            document.documentElement.classList.add('intro-done');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- Master Header / Navbar -->
+    <header class="navbar">
+      <div class="nav-container">
+        <a class="brand" href="index.html">
+          <img src="Logo.jpeg" alt="Zoloverse Logo" class="brand-logo-img" />
+          <div class="brand-fallback-icon" style="display:none;"><i class="fas fa-laptop-code"></i></div>
+          <span class="brand-title"><span class="brand-text-name">Zolo</span><span>verse</span></span>
+        </a>
+
+        <nav>
+          <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="projects.html">Projects Showcase</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="register.html" class="active">Order Service</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-actions">
+          <a href="register.html" class="btn btn-primary btn-sm magnetic"><i class="fas fa-paper-plane"></i> Place Order</a>
+          <a href="admin.html" class="btn btn-secondary btn-sm" title="Admin Panel"><i class="fas fa-shield-alt"></i></a>
+          <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Toggle Navigation"><i class="fas fa-bars"></i></button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Page Hero -->
+      <section class="page-hero">
+        <div class="container text-center">
+          <div class="section-header text-center" style="max-width: 800px; margin: 0 auto;">
+            <span class="section-badge"><i class="fas fa-briefcase"></i> Service Order Request</span>
+            <h1 class="section-title">Request Professional IT Services</h1>
+            <p class="section-subtitle">
+              Choose the service you need and share your engineering scope. Our senior engineering team will review your project and deliver an architectural roadmap.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Registration / Order Form Section -->
+      <section class="section-padding">
+        <div class="container">
+          <div class="form-shell">
+            <!-- Alert Banner -->
+            <div id="regAlertBanner" style="display:none; padding:18px 24px; border-radius:var(--radius-sm); margin-bottom:28px; font-weight:600; font-size:0.95rem;"></div>
+
+            <div style="margin-bottom:28px; padding-bottom:16px; border-bottom:1px solid var(--border);">
+              <h3 style="font-size:1.25rem; font-weight:700; color:var(--text);"><i class="fas fa-laptop-code" style="color:var(--primary-purple); margin-right:8px;"></i> Project Specifications &amp; Contact</h3>
+              <p style="color:var(--text-muted); font-size:0.9rem; margin-top:4px;">Submit your service order request to engage our engineering team.</p>
+            </div>
+
+            <!-- The Service Order Form -->
+            <form id="registrationForm" onsubmit="handleRegistrationSubmit(event)">
+              <!-- Anti-spam bot honeypot -->
+              <input type="text" name="anti_bot" id="antiBot" style="display:none;" tabindex="-1" autocomplete="off" />
+
+              <!-- Common Details -->
+              <div class="field-row">
+                <div class="input-group">
+                  <input type="text" id="regFullName" class="form-control" placeholder=" " required />
+                  <label for="regFullName">Full Name *</label>
+                </div>
+                <div class="input-group">
+                  <input type="email" id="regEmail" class="form-control" placeholder=" " required />
+                  <label for="regEmail">Email Address *</label>
+                </div>
+              </div>
+
+              <div class="field-row">
+                <div class="input-group">
+                  <input type="tel" id="regPhone" class="form-control" placeholder=" " required />
+                  <label for="regPhone">Contact Phone Number *</label>
+                </div>
+
+                <!-- Service Dropdown -->
+                <div class="input-group" id="wrapServiceDropdown">
+                  <select id="regServiceSelect" class="form-control" required>
+                    <option value="" disabled selected>Select IT Service *</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Service Specific Fields -->
+              <div id="serviceSpecificFields">
+                <div class="field-row">
+                  <div class="input-group">
+                    <input type="text" id="regBudget" class="form-control" placeholder=" " />
+                    <label for="regBudget">Estimated Budget (Optional, e.g. $5k - $10k)</label>
+                  </div>
+                  <div class="input-group">
+                    <input type="text" id="regTimeline" class="form-control" placeholder=" " />
+                    <label for="regTimeline">Desired Timeline (e.g. 1-2 Months)</label>
+                  </div>
+                </div>
+
+                <div class="input-group">
+                  <textarea id="regRequirements" class="form-control" style="min-height:140px;" placeholder=" " required></textarea>
+                  <label for="regRequirements">Project Scope &amp; Engineering Requirements *</label>
+                </div>
+              </div>
+
+              <button type="submit" id="regSubmitBtn" class="btn btn-primary magnetic" style="width: 100%; justify-content: center; padding: 16px;">
+                <i class="fas fa-paper-plane"></i> Submit Service Order Request
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Master Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <a class="brand" href="index.html" style="margin-bottom: 16px;">
+              <img src="Logo.jpeg" alt="Zoloverse Logo" class="brand-logo-img" />
+              <div class="brand-fallback-icon" style="display:none;"><i class="fas fa-laptop-code"></i></div>
+              <span class="brand-title"><span class="brand-text-name">Zolo</span><span>verse</span></span>
+            </a>
+            <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.7; margin-top: 14px;">
+              Premier IT software development studio dedicated to modern craftsmanship, scalable cloud architectures, and high-impact digital solutions.
+            </p>
+          </div>
+
+          <div class="footer-col footer-nav">
+            <h4>Navigation</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="projects.html">Projects Showcase</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+              <li><a href="register.html">Order Service</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col footer-nav">
+            <h4>Offerings</h4>
+            <ul>
+              <li><a href="services.html">Full-Stack Web Applications</a></li>
+              <li><a href="services.html">UI/UX Interface Engineering</a></li>
+              <li><a href="services.html">API &amp; Cloud Databases</a></li>
+              <li><a href="services.html">Mobile Solutions</a></li>
+              <li><a href="services.html">Backend Architecture</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Contact Details</h4>
+            <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 10px;">
+              <i class="fas fa-map-marker-alt" style="color: var(--accent-gold); margin-right: 8px;"></i> <span class="brand-contact-location">Chennai, Tamil Nadu, India</span>
+            </p>
+            <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 10px;">
+              <i class="fas fa-envelope" style="color: var(--accent-gold); margin-right: 8px;"></i> <a href="mailto:contact@zoloverse.com" class="brand-contact-email" style="color:inherit; text-decoration:none;">contact@zoloverse.com</a>
+            </p>
+            <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 10px;">
+              <i class="fas fa-phone" style="color: var(--accent-gold); margin-right: 8px;"></i> <a href="tel:+919876543210" class="brand-contact-phone" style="color:inherit; text-decoration:none;">+91 98765 43210</a>
+            </p>
+            <p style="color: var(--text-muted); font-size: 0.92rem;">
+              <i class="fas fa-clock" style="color: var(--accent-gold); margin-right: 8px;"></i> <span class="brand-contact-hours">Mon - Sat: 9:00 AM - 7:00 PM</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div>&copy; 2026 <span class="brand-text-name">Zoloverse</span>. All rights reserved. Professional IT Services &amp; Digital Solutions.</div>
+          <div>Built with Semantic HTML5, CSS Tokens, Modern PHP PDO &amp; GSAP Physics.</div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- GSAP & Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js?v=zoloverse_v3"></script>
+    <script>
+      let availableServices = [];
+
+      document.addEventListener('DOMContentLoaded', async () => {
+        // Parse Query Params (e.g. ?service=2)
+        const params = new URLSearchParams(window.location.search);
+        const preService = params.get('service');
+
+        try {
+          const resSvc = await fetch('api_services.php');
+          const dataSvc = await resSvc.json();
+
+          if (dataSvc.success && dataSvc.services) {
+            availableServices = dataSvc.services;
+            const sSelect = document.getElementById('regServiceSelect');
+            availableServices.forEach(s => {
+              const opt = document.createElement('option');
+              opt.value = s.id;
+              opt.textContent = `${s.title}`;
+              sSelect.appendChild(opt);
+            });
+            if (preService) {
+              sSelect.value = preService;
+            }
+          }
+        } catch (e) {
+          console.error('Failed to populate services options:', e);
+        }
+      });
+
+      async function handleRegistrationSubmit(e) {
+        e.preventDefault();
+        const honeypot = document.getElementById('antiBot').value;
+        if (honeypot) return;
+
+        const btn = document.getElementById('regSubmitBtn');
+        const banner = document.getElementById('regAlertBanner');
+        const originalHtml = btn.innerHTML;
+
+        const payload = {
+          registration_type: 'service',
+          service_id: Number(document.getElementById('regServiceSelect').value),
+          full_name: document.getElementById('regFullName').value.trim(),
+          email: document.getElementById('regEmail').value.trim(),
+          phone: document.getElementById('regPhone').value.trim(),
+          budget_range: document.getElementById('regBudget').value.trim() || undefined,
+          timeline: document.getElementById('regTimeline').value.trim() || undefined,
+          requirements: document.getElementById('regRequirements').value.trim()
+        };
+
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing Order Request...';
+
+        try {
+          const res = await fetch('api_registrations.php?type=service', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const data = await res.json();
+
+          if (data.success) {
+            banner.style.display = 'block';
+            banner.style.background = 'rgba(16, 185, 129, 0.15)';
+            banner.style.border = '1px solid #10B981';
+            banner.style.color = '#10B981';
+            banner.innerHTML = `
+              <div style="font-size:1.15rem; margin-bottom:6px;"><i class="fas fa-check-circle"></i> Order Request Submitted Successfully!</div>
+              <div>Reference Code: <strong style="color:#fff; font-family:monospace; background:rgba(0,0,0,0.4); padding:3px 8px; border-radius:4px;">${escapeHtml(data.registration_reference || data.reference || 'SUBMITTED')}</strong></div>
+              <p style="margin-top:8px; font-weight:normal; font-size:0.9rem; color:var(--text-muted);">Please save your reference code. Our engineering lead will review your specifications and get in touch with you promptly.</p>
+            `;
+            document.getElementById('registrationForm').reset();
+            window.scrollTo({ top: banner.offsetTop - 120, behavior: 'smooth' });
+            if (typeof showToast === 'function') {
+              showToast('Service order request submitted successfully!');
+            }
+          } else {
+            throw new Error(data.message || 'Submission failed');
+          }
+        } catch (err) {
+          banner.style.display = 'block';
+          banner.style.background = 'rgba(239, 68, 68, 0.15)';
+          banner.style.border = '1px solid #EF4444';
+          banner.style.color = '#EF4444';
+          banner.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${err.message || 'Error processing your request. Please verify all fields and retry.'}`;
+          if (typeof showToast === 'function') {
+            showToast('Failed to submit order request', true);
+          }
+        } finally {
+          btn.disabled = false;
+          btn.innerHTML = originalHtml;
+        }
+      }
+
+      function escapeHtml(text) {
+        if (!text) return '';
+        const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+        return text.toString().replace(/[&<>"']/g, m => map[m]);
+      }
+    </script>
+  </body>
+</html>
